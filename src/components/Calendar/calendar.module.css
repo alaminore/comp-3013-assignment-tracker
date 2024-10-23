@@ -1,0 +1,12 @@
+.calendarBox {
+  position: absolute;
+  top: 117%;
+  left: 45%;
+  background-color: #808080;
+  padding: 8px;
+  border: 2px solid #4ea8de;
+}
+
+.hidden {
+  display: none;
+}
