@@ -1,30 +1,38 @@
 import styles from "./assignment.module.css";
 import { TbTrash } from "react-icons/tb";
 import { BsCheckCircleFill } from "react-icons/bs";
-import { TAssignment, useAssignmentContext } from "../../helpers/context";
+// import { useAssignmentContext } from "../../helpers/context";
+import { useStore, TAssignment } from "../../helpers/store";
 
+//Setting the prop for this particular module. No need to put in the store :)
 interface AssignmentProps {
   assignment: TAssignment;
 }
 
-
+// Our beautiful Assignment module export! 
 export function Assignment({ assignment }: AssignmentProps) {
 
-  const { setAssignmentList } = useAssignmentContext();
+  const { setAssignmentList } = useStore(); // Switching to Zustand!
 
   const handleCompletion = () => {
-    setAssignmentList((prevList) =>
-      prevList.map((item) =>
+    setAssignmentList((prevList: TAssignment[]) => {
+      const updatedList = prevList.map((item: TAssignment) =>
         item.id === assignment.id
           ? { ...item, completed: !item.completed }
           : item
-      )
-    );
-  }
+      );
+      console.log("Updated list on completion: ", updatedList); 
+      return updatedList; 
+    });
+  };
 
   const handleDelete = () => {
-    setAssignmentList((prevList) => prevList.filter(item => item.id !== assignment.id));
-  }
+    setAssignmentList((prevList: TAssignment[]) => {
+      const updatedList = prevList.filter(item => item.id !== assignment.id);
+      console.log("Updated List on Delete:", updatedList); 
+      return updatedList; 
+    });
+  };
 
 
   return (

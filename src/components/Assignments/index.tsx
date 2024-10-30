@@ -1,11 +1,12 @@
 import { Assignment } from "../Assignment";
 import styles from "./assignments.module.css";
-import { useAssignmentContext } from "../../helpers/context";
+// import { useAssignmentContext } from "../../helpers/context";
+import { useStore } from "../../helpers/store";
 
 
 export function Assignments() {
 
-  const { assignmentList } = useAssignmentContext(); //Pulling in the context from our context support doc :)
+  const { assignmentList } = useStore(); //Pulling from Zustand now! :D
   
   const completedAssignmentCount = () => { // Function to count how many assignments are completed
     return assignmentList.filter((assignment) => assignment.completed).length;

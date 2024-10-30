@@ -1,14 +1,15 @@
 import styles from "./header.module.css";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { uppercase } from "../../helpers/stringHelpers";
-import { TAssignment, useAssignmentContext } from "../../helpers/context";
+// import { TAssignment, useAssignmentContext } from "../../helpers/context";
 import { FaCalendarAlt, FaCalendarCheck } from "react-icons/fa";
 import { MyDatePicker } from "../Calendar";
 import { useState } from "react";
+import { useStore, TAssignment } from "../../helpers/store";
 
 export function Header() {
 
-  const { assignmentInput, setAssignmentInput, assignmentList, setAssignmentList, assignmentDate, setAssignmentDate } = useAssignmentContext();
+  const { assignmentInput, setAssignmentInput, assignmentList, setAssignmentList, assignmentDate, setAssignmentDate } = useStore(); // ZUSTAND!!!!!
   const [ calendarVisible, setCalendarVisible] = useState<Boolean>(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
